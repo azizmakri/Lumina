@@ -1,0 +1,16 @@
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\bin\Debug\net8.0\Lumina.Authentification.Application.deps.json
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\bin\Debug\net8.0\Lumina.Authentification.Application.dll
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\bin\Debug\net8.0\Lumina.Authentification.Application.pdb
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\bin\Debug\net8.0\Lumina.Authentification.Domain.dll
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\bin\Debug\net8.0\Lumina.Authentification.Domain.pdb
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.csproj.AssemblyReference.cache
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.AssemblyInfoInputs.cache
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.AssemblyInfo.cs
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.csproj.CoreCompileInputs.cache
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.sourcelink.json
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.csproj.CopyComplete
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.dll
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\refint\Lumina.Authentification.Application.dll
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\Lumina.Authentification.Application.pdb
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Application\obj\Debug\net8.0\ref\Lumina.Authentification.Application.dll

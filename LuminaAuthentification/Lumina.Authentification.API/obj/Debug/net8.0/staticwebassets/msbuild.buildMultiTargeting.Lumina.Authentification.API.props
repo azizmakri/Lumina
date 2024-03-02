@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Lumina.Authentification.API.props" />
+</Project>

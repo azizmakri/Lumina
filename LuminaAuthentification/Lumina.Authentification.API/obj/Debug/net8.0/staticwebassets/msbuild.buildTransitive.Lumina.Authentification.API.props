@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Lumina.Authentification.API.props" />
+</Project>
