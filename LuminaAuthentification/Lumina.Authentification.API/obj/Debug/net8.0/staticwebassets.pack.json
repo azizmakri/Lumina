@@ -85,6 +85,58 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\0db6c829-4f6d-4ae6-a3f0-96fe7213fb67.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\0db6c829-4f6d-4ae6-a3f0-96fe7213fb67.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\3ae8e3dc-43d0-4f3d-90ae-c227597b7b16.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\3ae8e3dc-43d0-4f3d-90ae-c227597b7b16.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\41c6e25a-9c80-4ae0-9e2f-8402797bca06.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\41c6e25a-9c80-4ae0-9e2f-8402797bca06.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\54adbed2-155e-4621-b444-cb8c4b524461.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\54adbed2-155e-4621-b444-cb8c4b524461.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\71a25667-f0a4-4a62-9710-302805afcbe9.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\71a25667-f0a4-4a62-9710-302805afcbe9.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\7f073a34-c90d-4490-8f9c-fc7939e0ea01.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\7f073a34-c90d-4490-8f9c-fc7939e0ea01.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\a030f7ee-cb40-4272-bc25-ef546e0f5de1.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\a030f7ee-cb40-4272-bc25-ef546e0f5de1.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\b64be5ba-4ef8-4491-8f1e-8f6867edb92f.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\b64be5ba-4ef8-4491-8f1e-8f6867edb92f.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\bd6b66c7-5cdf-4f31-a4b1-a1e17f30b731.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\bd6b66c7-5cdf-4f31-a4b1-a1e17f30b731.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\be2a50c0-14bc-4d44-a399-d0513fdf58b2.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\be2a50c0-14bc-4d44-a399-d0513fdf58b2.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\be5a878c-6ff1-45d9-987e-637cb73806bf.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\be5a878c-6ff1-45d9-987e-637cb73806bf.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\e3e45a28-900b-47b3-804f-259e872ad6b4.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\e3e45a28-900b-47b3-804f-259e872ad6b4.xlsx"
+    },
+    {
+      "Id": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\wwwroot\\uploads\\e43fd254-17c9-4783-a587-73ca0cb35bbc.xlsx",
+      "PackagePath": "staticwebassets\\uploads\\e43fd254-17c9-4783-a587-73ca0cb35bbc.xlsx"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Lumina.Authentification.API.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

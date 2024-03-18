@@ -11,12 +11,11 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("50fddd94-80a5-45bd-b61f-8cac1360e7b3")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lumina.Authentification.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0c9a17bd99588efbd186f9d9711e5372a22df82")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lumina.Authentification.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lumina.Authentification.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

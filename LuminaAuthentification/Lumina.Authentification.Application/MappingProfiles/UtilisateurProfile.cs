@@ -1,7 +1,14 @@
 ﻿using AutoMapper;
-using Lumina.Authentification.Application.UtilisateurFeature;
-using Lumina.Authentification.Application.UtilisateurFeature.Commands;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.Create;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.CreateAdmin;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.CreateEleve;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.ForgetPassword;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.login;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.ResetPassword;
+using Lumina.Authentification.Application.UtilisateurFeature.Commands.Update;
+using Lumina.Authentification.Application.UtilisateurFeature.Dtos;
 using Lumina.Authentification.Domain.Entities;
+using Lumina.Authentification.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +21,16 @@ namespace Lumina.Authentification.Application.MappingProfiles
     {
         public UtilisateurProfile()
         {
-            CreateMap<User, UtilisateurDto>();
-            CreateMap<CreateUtilisateurCommand, User>();
+            CreateMap<User, UserDto>();
+            CreateMap<LoginCommand, User>();
+            CreateMap<ForgetPasswordCommand, User>();
+            CreateMap<ResetPasswordCommand, User>();
+            CreateMap<CreateUtilisateurCommand, User>().ReverseMap()
+                .ForMember(x => x.Role, opt => opt.Ignore());
             CreateMap<UpdateUtilisateurCommand, User>();
+            CreateMap<CreateAdminCommand, User>();
+            CreateMap<CreateEleveCommand, User>();
+
         }
     }
 }

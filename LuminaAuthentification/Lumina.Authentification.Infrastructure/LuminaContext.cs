@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lumina.Authentification.Infrastructure
 {
-    public class LuminaContext : IdentityDbContext<IdentityUser>
+    public class LuminaContext : IdentityDbContext<User>
     {
         public DbSet<User> Users { get; set; }
 
