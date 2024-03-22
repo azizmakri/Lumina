@@ -155,6 +155,10 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Property<float>("Mark")
                         .HasColumnType("real");
 
+                    b.Property<string>("StudentFk")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("SubjectName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -169,6 +173,8 @@ namespace LuminaApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("EvaluationId");
+
+                    b.HasIndex("StudentFk");
 
                     b.HasIndex("TeacherFk");
 
@@ -553,10 +559,18 @@ namespace LuminaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Evaluation", b =>
                 {
+                    b.HasOne("LuminaApp.Domain.Entities.User", "Student")
+                        .WithMany("StudentsEvaluations")
+                        .HasForeignKey("StudentFk")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("LuminaApp.Domain.Entities.User", "Teacher")
-                        .WithMany("Evaluations")
+                        .WithMany("TeachersEvaluations")
                         .HasForeignKey("TeacherFk")
                         .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("Student");
 
                     b.Navigation("Teacher");
                 });
@@ -693,11 +707,13 @@ namespace LuminaApp.Infrastructure.Migrations
 
                     b.Navigation("ClassRooms");
 
-                    b.Navigation("Evaluations");
-
                     b.Navigation("Folders");
 
                     b.Navigation("Students");
+
+                    b.Navigation("StudentsEvaluations");
+
+                    b.Navigation("TeachersEvaluations");
 
                     b.Navigation("sessions");
                 });

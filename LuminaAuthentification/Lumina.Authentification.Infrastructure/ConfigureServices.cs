@@ -23,6 +23,7 @@ namespace Lumina.Authentification.Infrastructure
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
+            services.AddTransient<IMailService, MailService>();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

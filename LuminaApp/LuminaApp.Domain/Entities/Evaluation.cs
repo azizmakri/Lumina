@@ -19,7 +19,7 @@ namespace LuminaApp.Domain.Entities
         public string SubjectName { get; set; }
         public virtual User? Teacher { get; set; }
         public string? TeacherFk { get; set; }
-     //   public int StudentFk { get; set; }
-      //  public virtual  User? Student { get; set; }
+        public string StudentFk { get; set; }
+        public virtual  User? Student { get; set; }
     }
 }

@@ -23,7 +23,8 @@ namespace LuminaApp.Domain.Entities
         public virtual ICollection<Attendance>? Attendances { get; set; }
         public virtual ICollection<ClassRoom>? ClassRooms { get; set; }
         public virtual ICollection<Document>? Documents { get; set; }
-        public virtual ICollection<Evaluation>? Evaluations { get; set; }
+        public virtual ICollection<Evaluation>? StudentsEvaluations { get; set; }
+        public virtual ICollection<Evaluation>? TeachersEvaluations { get; set; }
         public virtual ICollection<Folder>? Folders { get; set; }
     }
 }

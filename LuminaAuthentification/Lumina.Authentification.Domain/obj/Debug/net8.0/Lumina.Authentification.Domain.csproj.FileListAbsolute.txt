@@ -1,6 +1,7 @@
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\bin\Debug\net8.0\Lumina.Authentification.Domain.deps.json
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\bin\Debug\net8.0\Lumina.Authentification.Domain.dll
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\bin\Debug\net8.0\Lumina.Authentification.Domain.pdb
+C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\Lumina.Authentification.Domain.csproj.AssemblyReference.cache
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\Lumina.Authentification.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\Lumina.Authentification.Domain.AssemblyInfoInputs.cache
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\Lumina.Authentification.Domain.AssemblyInfo.cs
@@ -10,4 +11,3 @@ C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\refint\Lumina.Authentification.Domain.dll
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\Lumina.Authentification.Domain.pdb
 C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\ref\Lumina.Authentification.Domain.dll
-C:\PFE\LuminaApi\LuminaAuthentification\Lumina.Authentification.Domain\obj\Debug\net8.0\Lumina.Authentification.Domain.csproj.AssemblyReference.cache
