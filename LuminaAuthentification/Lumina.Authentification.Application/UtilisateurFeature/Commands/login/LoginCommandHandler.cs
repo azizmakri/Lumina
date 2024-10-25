@@ -40,24 +40,28 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.login
                 {
                     new Claim("UserName", user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim("UserId", user.Id),
+                    new Claim("Email", user.Email),
+                    new Claim("FirstName", user.FirstName),
+                    new Claim("LastName", user.LastName)
                 };
+
+                if (user.GradeFK.HasValue)
+                {
+                    authClaims.Add(new Claim("GradeFK", user.GradeFK.Value.ToString()));
+                }
 
                 foreach (var userRole in userRoles)
                 {
                     authClaims.Add(new Claim("Role", userRole));
                 }
-                authClaims.Add(new Claim("UserId", user.Id));
-                authClaims.Add(new Claim("Email", user.Email));
-                authClaims.Add(new Claim("FirstName", user.FirstName));
-//                var userJson = JsonSerializer.Serialize(user);
-//                authClaims.Add(new Claim("UserObject", userJson));
-                authClaims.Add(new Claim("LastName", user.LastName));
+
                 var token = GetToken(authClaims);
 
                 return new OperationResult
                 {
                     Status = true,
-                    Message = "Authentication successful",
+                    Message = "Authentification réussie",
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
                     Expiration = token.ValidTo
                 };
@@ -66,7 +70,7 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.login
             return new OperationResult
             {
                 Status = false,
-                Message = "Authentication failed"
+                Message = "Échec de l'authentification"
             };
         }
 

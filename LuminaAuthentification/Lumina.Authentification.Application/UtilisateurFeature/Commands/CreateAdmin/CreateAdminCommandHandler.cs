@@ -34,46 +34,33 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.Create
                 var problemDetails = new ProblemDetails
                 {
                     Status = StatusCodes.Status500InternalServerError,
-                    Title = "Error",
-                    Detail = "User already exists!"
+                    Title = "Erreur",
+                    Detail = "L'utilisateur existe déjà !"
                 };
-                return new OperationResult { Status = false, Message= "User already exists!" };
+                return new OperationResult { Status = false, Message= "L'utilisateur existe déjà !" };
             }
             var result = await _userManager.CreateAsync(utilisateurToCreate, utilisateurToCreate.PasswordHash!);
+            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+
+            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+                await _userManager.AddToRoleAsync(utilisateurToCreate, UserRoles.Admin);
+
             if (!result.Succeeded)
             {
                 var problemDetails = new ProblemDetails
                 {
                     Status = StatusCodes.Status500InternalServerError,
-                    Title = "Error",
-                    Detail = "User creation failed! Please check user details and try again."
+                    Title = "Erreur",
+                    Detail = "La création de l'utilisateur a échoué ! Veuillez vérifier les détails de l'utilisateur et réessayer."
                 };
 
                 var errorMessage = string.Join(", ", result.Errors.Select(error => error.Description));
                 return new OperationResult { Status = false, Message = errorMessage };
             }
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-
-            /*if (!await _roleManager.RoleExistsAsync(UserRoles.Eleve))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Eleve));
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Enseignant))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Enseignant));
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Employe))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Employe));*/
-
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-                await _userManager.AddToRoleAsync(utilisateurToCreate, UserRoles.Admin);
-
-            /*if (await _roleManager.RoleExistsAsync(UserRoles.Eleve))
-                await _userManager.AddToRoleAsync(utilisateurToCreate, UserRoles.Eleve);
-            if (await _roleManager.RoleExistsAsync(UserRoles.Enseignant))
-                await _userManager.AddToRoleAsync(utilisateurToCreate, UserRoles.Enseignant);
-            if (await _roleManager.RoleExistsAsync(UserRoles.Employe))
-                await _userManager.AddToRoleAsync(utilisateurToCreate, UserRoles.Employe);*/
-
-            return new OperationResult { Status = true, Message = "User registered successfully" };
+            
+            return new OperationResult { Status = true, Message = "L'utilisateur a été enregistré avec succès" };
         }
     }
 

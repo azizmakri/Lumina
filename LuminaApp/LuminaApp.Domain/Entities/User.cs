@@ -14,17 +14,21 @@ namespace LuminaApp.Domain.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public virtual User? Parent { get; set; }
-        public virtual History? history { get; set; }
         public string? ParentFK { get; set; }
         public int? historyFK { get; set; }
+        public int? gradeFK { get; set; }
+        public int? subjectFK { get; set; }
+        public virtual User? Parent { get; set; }
+        public virtual History? history { get; set; }
+        public virtual Grade? grade { get; set; }
+        public virtual ICollection<Subject>? subjects { get; set; }
         public virtual ICollection<User>? Students { get; set; }
-        public virtual ICollection<Session>? sessions { get; set; }
+        public virtual ICollection<SchoolNews>? News { get; set; }
         public virtual ICollection<Attendance>? Attendances { get; set; }
         public virtual ICollection<ClassRoom>? ClassRooms { get; set; }
-        public virtual ICollection<Document>? Documents { get; set; }
-        public virtual ICollection<Evaluation>? StudentsEvaluations { get; set; }
-        public virtual ICollection<Evaluation>? TeachersEvaluations { get; set; }
+        public virtual ICollection<DocumentEntity>? teacherDocuments { get; set; }
+        public virtual ICollection<Evaluation>? evaluations { get; set; }
+        public virtual ICollection<DocumentEntity>? studentDocuments { get; set; }
         public virtual ICollection<Folder>? Folders { get; set; }
     }
 }

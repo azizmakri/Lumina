@@ -1,5 +1,8 @@
+using Lumina.Authentification.Application.Commons.Email;
+using Lumina.Authentification.Application.Interfaces;
 using Lumina.Authentification.Domain.Entities;
 using Lumina.Authentification.Infrastructure;
+using Lumina.Authentification.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -16,8 +19,14 @@ builder.Services.AddCors(options=> {
     .AllowAnyHeader()
     .AllowAnyMethod()); 
     }) ;
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddHostedService<RabbitMQConsumer>();
+builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQSettings"));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,5 +43,4 @@ app.UseAuthorization();
 app.UseCors("all");
 app.MapControllers();
 app.UseDeveloperExceptionPage();
-
 app.Run();

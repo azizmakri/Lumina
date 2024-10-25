@@ -21,16 +21,17 @@ namespace Lumina.Authentification.Application.MappingProfiles
     {
         public UtilisateurProfile()
         {
-            CreateMap<User, UserDto>();
+            CreateMap<User, UserDto>()
+                .ForMember(x => x.role, opt => opt.Ignore());
             CreateMap<LoginCommand, User>();
             CreateMap<ForgetPasswordCommand, User>();
             CreateMap<ResetPasswordCommand, User>();
             CreateMap<CreateUtilisateurCommand, User>().ReverseMap()
-                .ForMember(x => x.Role, opt => opt.Ignore());
+                .ForMember(x => x.Role, opt => opt.Ignore())
+                .ForMember(x=>x.ChildIds,opt=>opt.Ignore());
             CreateMap<UpdateUtilisateurCommand, User>();
             CreateMap<CreateAdminCommand, User>();
             CreateMap<CreateEleveCommand, User>();
-
         }
     }
 }

@@ -9,8 +9,6 @@ namespace Lumina.Authentification.Domain.Entities
         public virtual User? Parent { get; set; }
         public virtual ICollection<User>? Students { get; set; }
         public string? ParentFK { get; set; }
-
-
-
+        public int? GradeFK { get; set; }
     }
 }

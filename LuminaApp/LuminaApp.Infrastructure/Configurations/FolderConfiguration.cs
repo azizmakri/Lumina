@@ -10,6 +10,7 @@ namespace LuminaApp.Infrastructure.Configurations
         {
             builder.HasMany(folder => folder.Documents).WithOne(document => document.folder).HasForeignKey(document=>document.folderFK).OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(folder => folder.ParentFolder).WithMany(parentfolder => parentfolder.Folders).HasForeignKey(folder=>folder.ParenFolderFK).OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(folder => folder.grade).WithMany(grade => grade.Folders).HasForeignKey(grade => grade.GradeFK).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

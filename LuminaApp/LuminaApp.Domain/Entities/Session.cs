@@ -12,11 +12,12 @@ namespace LuminaApp.Domain.Entities
         [Key]
         public int SessionId { get; set; }
         public int? SubjectFK { get; set; }
-        public string? TeacherFK { get; set; }
+        public int? ClassRoomFK { get; set; }
         public DateTime start_hour { get; set; }
         public DateTime end_hour { get; set; }
-        public virtual User? Teacher { get; set; }
+        public virtual ClassRoom? ClassRoom { get; set; }
         public virtual Subject? subject { get; set; }
-        public virtual Attendance? attendance { get; set; }
+        public virtual ICollection<Attendance> ? attendance { get; set; }
+        public virtual ICollection<Evaluation> ? evaluations { get; set; }
     }
 }

@@ -12,14 +12,13 @@ namespace LuminaApp.Domain.Entities
     {
         [Key]
         public int EvaluationId { get; set; }
-        public float Mark { get; set; }
-        public DateTime EvaluationDate { get; set; }
+        public float? Mark { get; set; }
+        public int? rating { get; set; }
+        public string? description { get; set; }
         public EvaluationType evaluationType { get; set; }
-        public float coefficient { get; set; }
-        public string SubjectName { get; set; }
-        public virtual User? Teacher { get; set; }
-        public string? TeacherFk { get; set; }
-        public string StudentFk { get; set; }
-        public virtual  User? Student { get; set; }
+        public virtual Session? session { get; set; }
+        public virtual User? student { get; set; }
+        public int? sessionFk { get; set; }
+        public string? studentFk { get; set; }
     }
 }

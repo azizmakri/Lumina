@@ -10,6 +10,8 @@ namespace LuminaApp.Domain.Entities
         public string? StudentFK { get; set; }
         public int? SessionFK { get; set; }
         public AttendanceType attendanceType { get; set; }
+        public string ? Observation { get; set; }
+
         public virtual Session? session { get; set; }
         public virtual User? Student { get; set; }
     }

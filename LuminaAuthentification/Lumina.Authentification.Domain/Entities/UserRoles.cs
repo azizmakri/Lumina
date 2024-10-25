@@ -9,9 +9,9 @@ namespace Lumina.Authentification.Domain.Entities
     public class UserRoles
     {
         public const string Admin = "Admin";
-        public const string Eleve = "ELeve";
+        public const string Student = "Student";
         public const string Parent = "Parent";
-        public const string Employe = "Employe";
-        public const string Enseignant = "Enseignant";
+        public const string Employee = "Employee";
+        public const string Teacher = "Teacher";
     }
 }

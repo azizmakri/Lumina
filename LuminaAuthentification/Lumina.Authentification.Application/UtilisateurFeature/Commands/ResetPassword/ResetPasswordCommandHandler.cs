@@ -30,18 +30,18 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.ResetP
 
             if (user == null)
             {
-                return new OperationResult { Status = false, Message = "No user found with this email" };
+                return new OperationResult { Status = false, Message = "Aucun utilisateur n'a été trouvé avec cet email" };
             }
 
             var result = await _userManager.ResetPasswordAsync(user, request.Token, request.NewPassword);
 
             if (result.Succeeded)
             {
-                return new OperationResult { Status = true, Message = "Password reset successfully" };
+                return new OperationResult { Status = true, Message = "Réinitialisation du mot de passe réussie" };
             }
             else
             {
-                return new OperationResult { Status = false, Message = "Failed to reset password" };
+                return new OperationResult { Status = false, Message = "Échec de la réinitialisation du mot de passe" };
             }
         }
     }

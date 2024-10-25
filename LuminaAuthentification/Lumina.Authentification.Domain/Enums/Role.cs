@@ -9,9 +9,9 @@ namespace Lumina.Authentification.Domain.Enums
     public enum Role
     {
         Admin,
-        Eleve,
+        Student,
         Parent,
-        Employe,
-        Enseignant
+        Employee,
+        Teacher
     }
 }

@@ -15,32 +15,7 @@ namespace Lumina.Authentification.Infrastructure.Persistence
             _userManager = userManager;
         }
 
-        //public List<User> ReadUsersFromExcel(Stream stream)
-        //{
-        //    var users = new List<User>();
-
-        //    using (var package = new ExcelPackage(stream))
-        //    {
-        //        var worksheet = package.Workbook.Worksheets.FirstOrDefault();
-        //        if (worksheet != null)
-        //        {
-        //            int rowCount = worksheet.Dimension.Rows;
-
-        //            for (int row = 2; row <= rowCount; row++) // Assuming first row is header
-        //            {
-        //                users.Add(new UserDto
-        //                {
-        //                    FirstName = worksheet.Cells[row, 1].Value?.ToString(),
-        //                    LastName = worksheet.Cells[row, 2].Value?.ToString(),
-        //                    Email = worksheet.Cells[row, 3].Value?.ToString(),
-        //                    PasswordHash = worksheet.Cells[row, 4].Value?.ToString()
-        //                });
-        //            }
-        //        }
-        //    }
-
-        //    return users;
-        //}
+        
           
         /* public async Task<bool> IsUtilisateurUnique(string name)
 {

@@ -18,24 +18,12 @@ namespace LuminaApp.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("DocumentUser", b =>
-                {
-                    b.Property<int>("DocumentsDocumentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("studentsId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("DocumentsDocumentId", "studentsId");
-
-                    b.HasIndex("studentsId");
-
-                    b.ToTable("DocumentUser");
-                });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Attendance", b =>
                 {
@@ -44,6 +32,9 @@ namespace LuminaApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AttendanceId"));
+
+                    b.Property<string>("Observation")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SessionFK")
                         .HasColumnType("int");
@@ -56,9 +47,7 @@ namespace LuminaApp.Infrastructure.Migrations
 
                     b.HasKey("AttendanceId");
 
-                    b.HasIndex("SessionFK")
-                        .IsUnique()
-                        .HasFilter("[SessionFK] IS NOT NULL");
+                    b.HasIndex("SessionFK");
 
                     b.HasIndex("StudentFK");
 
@@ -87,7 +76,7 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.ToTable("ClassRooms");
                 });
 
-            modelBuilder.Entity("LuminaApp.Domain.Entities.Document", b =>
+            modelBuilder.Entity("LuminaApp.Domain.Entities.DocumentEntity", b =>
                 {
                     b.Property<int>("DocumentId")
                         .ValueGeneratedOnAdd()
@@ -109,9 +98,19 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Property<int?>("folderFK")
                         .HasColumnType("int");
 
+                    b.Property<string>("studentFK")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("teacherFK")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("DocumentId");
 
                     b.HasIndex("folderFK");
+
+                    b.HasIndex("studentFK");
+
+                    b.HasIndex("teacherFK");
 
                     b.ToTable("Documents");
                 });
@@ -149,34 +148,29 @@ namespace LuminaApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EvaluationId"));
 
-                    b.Property<DateTime>("EvaluationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("Mark")
+                    b.Property<float?>("Mark")
                         .HasColumnType("real");
 
-                    b.Property<string>("StudentFk")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SubjectName")
-                        .IsRequired()
+                    b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TeacherFk")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<float>("coefficient")
-                        .HasColumnType("real");
 
                     b.Property<int>("evaluationType")
                         .HasColumnType("int");
 
+                    b.Property<int?>("rating")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("sessionFk")
+                        .HasColumnType("int");
+
+                    b.Property<string>("studentFk")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("EvaluationId");
 
-                    b.HasIndex("StudentFk");
+                    b.HasIndex("sessionFk");
 
-                    b.HasIndex("TeacherFk");
+                    b.HasIndex("studentFk");
 
                     b.ToTable("Evaluations");
                 });
@@ -196,6 +190,9 @@ namespace LuminaApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GradeFK")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Modification_Date")
                         .HasColumnType("datetime2");
 
@@ -205,13 +202,38 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Property<string>("TeacherFK")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("folderType")
+                        .HasColumnType("int");
+
                     b.HasKey("FolderId");
+
+                    b.HasIndex("GradeFK");
 
                     b.HasIndex("ParenFolderFK");
 
                     b.HasIndex("TeacherFK");
 
                     b.ToTable("Folders");
+                });
+
+            modelBuilder.Entity("LuminaApp.Domain.Entities.Grade", b =>
+                {
+                    b.Property<int>("GradeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GradeId"));
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GradeId");
+
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.History", b =>
@@ -230,6 +252,65 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.ToTable("Histories");
                 });
 
+            modelBuilder.Entity("LuminaApp.Domain.Entities.NotificationEntity", b =>
+                {
+                    b.Property<int>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NotificationId"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("newsFk")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("read")
+                        .HasColumnType("bit");
+
+                    b.HasKey("NotificationId");
+
+                    b.HasIndex("newsFk")
+                        .IsUnique();
+
+                    b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("LuminaApp.Domain.Entities.SchoolNews", b =>
+                {
+                    b.Property<int>("NewsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NewsId"));
+
+                    b.Property<DateTime>("NewsDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NewsPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SchoolFk")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NewsId");
+
+                    b.HasIndex("SchoolFk");
+
+                    b.ToTable("SchoolNews");
+                });
+
             modelBuilder.Entity("LuminaApp.Domain.Entities.Session", b =>
                 {
                     b.Property<int>("SessionId")
@@ -238,11 +319,11 @@ namespace LuminaApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SessionId"));
 
-                    b.Property<int?>("SubjectFK")
+                    b.Property<int?>("ClassRoomFK")
                         .HasColumnType("int");
 
-                    b.Property<string>("TeacherFK")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("SubjectFK")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("end_hour")
                         .HasColumnType("datetime2");
@@ -252,9 +333,9 @@ namespace LuminaApp.Infrastructure.Migrations
 
                     b.HasKey("SessionId");
 
-                    b.HasIndex("SubjectFK");
+                    b.HasIndex("ClassRoomFK");
 
-                    b.HasIndex("TeacherFK");
+                    b.HasIndex("SubjectFK");
 
                     b.ToTable("Sessions");
                 });
@@ -274,7 +355,18 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Property<float>("coefficient")
                         .HasColumnType("real");
 
+                    b.Property<int>("gradeFK")
+                        .HasColumnType("int");
+
+                    b.Property<string>("teacherFK")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("subjectId");
+
+                    b.HasIndex("gradeFK");
+
+                    b.HasIndex("teacherFK");
 
                     b.ToTable("Subjects");
                 });
@@ -342,7 +434,13 @@ namespace LuminaApp.Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("gradeFK")
+                        .HasColumnType("int");
+
                     b.Property<int?>("historyFK")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("subjectFK")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -356,6 +454,8 @@ namespace LuminaApp.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("ParentFK");
+
+                    b.HasIndex("gradeFK");
 
                     b.HasIndex("historyFK")
                         .IsUnique()
@@ -497,26 +597,12 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DocumentUser", b =>
-                {
-                    b.HasOne("LuminaApp.Domain.Entities.Document", null)
-                        .WithMany()
-                        .HasForeignKey("DocumentsDocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LuminaApp.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("studentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("LuminaApp.Domain.Entities.Attendance", b =>
                 {
                     b.HasOne("LuminaApp.Domain.Entities.Session", "session")
-                        .WithOne("attendance")
-                        .HasForeignKey("LuminaApp.Domain.Entities.Attendance", "SessionFK");
+                        .WithMany("attendance")
+                        .HasForeignKey("SessionFK")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("LuminaApp.Domain.Entities.User", "Student")
                         .WithMany("Attendances")
@@ -538,14 +624,28 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Navigation("employee");
                 });
 
-            modelBuilder.Entity("LuminaApp.Domain.Entities.Document", b =>
+            modelBuilder.Entity("LuminaApp.Domain.Entities.DocumentEntity", b =>
                 {
                     b.HasOne("LuminaApp.Domain.Entities.Folder", "folder")
                         .WithMany("Documents")
                         .HasForeignKey("folderFK")
                         .OnDelete(DeleteBehavior.NoAction);
 
+                    b.HasOne("LuminaApp.Domain.Entities.User", "student")
+                        .WithMany("studentDocuments")
+                        .HasForeignKey("studentFK")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("LuminaApp.Domain.Entities.User", "teacher")
+                        .WithMany("teacherDocuments")
+                        .HasForeignKey("teacherFK")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.Navigation("folder");
+
+                    b.Navigation("student");
+
+                    b.Navigation("teacher");
                 });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Equipment", b =>
@@ -559,24 +659,27 @@ namespace LuminaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Evaluation", b =>
                 {
-                    b.HasOne("LuminaApp.Domain.Entities.User", "Student")
-                        .WithMany("StudentsEvaluations")
-                        .HasForeignKey("StudentFk")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                    b.HasOne("LuminaApp.Domain.Entities.Session", "session")
+                        .WithMany("evaluations")
+                        .HasForeignKey("sessionFk")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("LuminaApp.Domain.Entities.User", "Teacher")
-                        .WithMany("TeachersEvaluations")
-                        .HasForeignKey("TeacherFk")
-                        .OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne("LuminaApp.Domain.Entities.User", "student")
+                        .WithMany("evaluations")
+                        .HasForeignKey("studentFk");
 
-                    b.Navigation("Student");
+                    b.Navigation("session");
 
-                    b.Navigation("Teacher");
+                    b.Navigation("student");
                 });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Folder", b =>
                 {
+                    b.HasOne("LuminaApp.Domain.Entities.Grade", "grade")
+                        .WithMany("Folders")
+                        .HasForeignKey("GradeFK")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("LuminaApp.Domain.Entities.Folder", "ParentFolder")
                         .WithMany("Folders")
                         .HasForeignKey("ParenFolderFK")
@@ -590,21 +693,66 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Navigation("ParentFolder");
 
                     b.Navigation("Teacher");
+
+                    b.Navigation("grade");
+                });
+
+            modelBuilder.Entity("LuminaApp.Domain.Entities.NotificationEntity", b =>
+                {
+                    b.HasOne("LuminaApp.Domain.Entities.SchoolNews", "schoolnews")
+                        .WithOne("notification")
+                        .HasForeignKey("LuminaApp.Domain.Entities.NotificationEntity", "newsFk")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("schoolnews");
+                });
+
+            modelBuilder.Entity("LuminaApp.Domain.Entities.SchoolNews", b =>
+                {
+                    b.HasOne("LuminaApp.Domain.Entities.User", "School")
+                        .WithMany("News")
+                        .HasForeignKey("SchoolFk")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("School");
                 });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Session", b =>
                 {
+                    b.HasOne("LuminaApp.Domain.Entities.ClassRoom", "ClassRoom")
+                        .WithMany("Session")
+                        .HasForeignKey("ClassRoomFK")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.HasOne("LuminaApp.Domain.Entities.Subject", "subject")
                         .WithMany("sessions")
-                        .HasForeignKey("SubjectFK");
+                        .HasForeignKey("SubjectFK")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("LuminaApp.Domain.Entities.User", "Teacher")
-                        .WithMany("sessions")
-                        .HasForeignKey("TeacherFK");
-
-                    b.Navigation("Teacher");
+                    b.Navigation("ClassRoom");
 
                     b.Navigation("subject");
+                });
+
+            modelBuilder.Entity("LuminaApp.Domain.Entities.Subject", b =>
+                {
+                    b.HasOne("LuminaApp.Domain.Entities.Grade", "grade")
+                        .WithMany("subjects")
+                        .HasForeignKey("gradeFK")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("LuminaApp.Domain.Entities.User", "teacher")
+                        .WithMany("subjects")
+                        .HasForeignKey("teacherFK")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("grade");
+
+                    b.Navigation("teacher");
                 });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.User", b =>
@@ -614,11 +762,18 @@ namespace LuminaApp.Infrastructure.Migrations
                         .HasForeignKey("ParentFK")
                         .OnDelete(DeleteBehavior.NoAction);
 
+                    b.HasOne("LuminaApp.Domain.Entities.Grade", "grade")
+                        .WithMany("students")
+                        .HasForeignKey("gradeFK")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("LuminaApp.Domain.Entities.History", "history")
                         .WithOne("user")
                         .HasForeignKey("LuminaApp.Domain.Entities.User", "historyFK");
 
                     b.Navigation("Parent");
+
+                    b.Navigation("grade");
 
                     b.Navigation("history");
                 });
@@ -676,6 +831,8 @@ namespace LuminaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.ClassRoom", b =>
                 {
+                    b.Navigation("Session");
+
                     b.Navigation("equipments");
                 });
 
@@ -686,14 +843,31 @@ namespace LuminaApp.Infrastructure.Migrations
                     b.Navigation("Folders");
                 });
 
+            modelBuilder.Entity("LuminaApp.Domain.Entities.Grade", b =>
+                {
+                    b.Navigation("Folders");
+
+                    b.Navigation("students");
+
+                    b.Navigation("subjects");
+                });
+
             modelBuilder.Entity("LuminaApp.Domain.Entities.History", b =>
                 {
                     b.Navigation("user");
                 });
 
+            modelBuilder.Entity("LuminaApp.Domain.Entities.SchoolNews", b =>
+                {
+                    b.Navigation("notification")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("LuminaApp.Domain.Entities.Session", b =>
                 {
                     b.Navigation("attendance");
+
+                    b.Navigation("evaluations");
                 });
 
             modelBuilder.Entity("LuminaApp.Domain.Entities.Subject", b =>
@@ -709,13 +883,17 @@ namespace LuminaApp.Infrastructure.Migrations
 
                     b.Navigation("Folders");
 
+                    b.Navigation("News");
+
                     b.Navigation("Students");
 
-                    b.Navigation("StudentsEvaluations");
+                    b.Navigation("evaluations");
 
-                    b.Navigation("TeachersEvaluations");
+                    b.Navigation("studentDocuments");
 
-                    b.Navigation("sessions");
+                    b.Navigation("subjects");
+
+                    b.Navigation("teacherDocuments");
                 });
 #pragma warning restore 612, 618
         }

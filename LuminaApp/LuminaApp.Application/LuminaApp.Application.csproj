@@ -7,16 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Attendance\**" />
+    <EmbeddedResource Remove="Features\Attendance\**" />
+    <None Remove="Features\Attendance\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LuminaApp.Domain\LuminaApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\Middlewares\" />
+    <Folder Include="Features\UserFeatures\Commands\" />
   </ItemGroup>
 
 </Project>

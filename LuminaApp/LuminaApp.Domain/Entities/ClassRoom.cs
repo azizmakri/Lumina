@@ -9,6 +9,9 @@ namespace LuminaApp.Domain.Entities
         public string ClassroomName { get; set; }
         public virtual User? employee { get; set; }
         public string? employeeFk { get; set; }
-        public ICollection<Equipment>? equipments { get; set; }
+        public virtual ICollection<Equipment>? equipments { get; set; }
+        public virtual ICollection<Session>? Session { get; set; }
+
+        /*public virtual User? admin { get; set; }*/
     }
 }

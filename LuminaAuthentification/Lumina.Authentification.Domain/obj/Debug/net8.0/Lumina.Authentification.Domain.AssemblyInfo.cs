@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Lumina.Authentification.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2de173f61035b754aacd21a5ed39b6d60f6370a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b7d46402d57ec587d0c84095175c7390cb2c939")]
 [assembly: System.Reflection.AssemblyProductAttribute("Lumina.Authentification.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Lumina.Authentification.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

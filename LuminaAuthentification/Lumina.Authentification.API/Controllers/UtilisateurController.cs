@@ -12,6 +12,8 @@ using Lumina.Authentification.Application.UtilisateurFeature.Commands.ResetPassw
 using Lumina.Authentification.Application.UtilisateurFeature.Commands.CreateAdmin;
 using NPOI.XSSF.UserModel;
 using Lumina.Authentification.Application.UtilisateurFeature.Commands.CreateEleve;
+using NPOI.SS.UserModel;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,7 +34,7 @@ namespace Lumina.Authentification.API.Controllers
 
         // GET: api/<UtilisateurController>
         //[Authorize]
-        [HttpGet("get-all")]
+        [HttpGet("get-all1")]
         public async Task<List<UserDto>> GetAllUsers()
         {
             var utilisateurs = await _mediator.Send(new GetUtilisateursQuery());
@@ -45,14 +47,7 @@ namespace Lumina.Authentification.API.Controllers
             var response = await _mediator.Send(admin);
             return response;
         }
-        [HttpPost]
-        [Route("formdata")]
-        public string formdatatest(IFormFile file)
-        {
-            return "";
-        }
 
-        // Read users from the Excel file
         [HttpPost("register-eleves-from-excel")]
         [DisableRequestSizeLimit]
         public async Task<ActionResult<List<OperationResult>>> RegisterUsersFromExcel(CancellationToken ct)
@@ -61,10 +56,26 @@ namespace Lumina.Authentification.API.Controllers
                 return NoContent();
 
             var file = Request.Form.Files[0];
+
+            // Ensure the file is an Excel file
+            var extension = Path.GetExtension(file.FileName);
+            if (extension != ".xlsx")
+            {
+                return BadRequest("Seuls les fichiers .xlsx sont autorisés.");
+            }
+
             var filePath = SaveFile(file);
 
-            // Read users from the Excel file
-            var usersFromExcel = ReadUsersFromExcel(filePath);
+            List<ExcelUser> usersFromExcel;
+            try
+            {
+                // Read and validate users from the Excel file
+                usersFromExcel = ReadUsersFromExcel(filePath);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest($"Erreur de validation de l'en-tête : {ex.Message}");
+            }
 
             // Register users into the database
             var results = new List<OperationResult>();
@@ -84,12 +95,11 @@ namespace Lumina.Authentification.API.Controllers
             return results;
         }
 
-        // Save the uploaded file into wwwroot/uploads folder
         private string SaveFile(IFormFile file)
         {
             if (file.Length == 0)
             {
-                throw new BadHttpRequestException("File is empty.");
+                throw new BadHttpRequestException("Le fichier est vide.");
             }
 
             var extension = Path.GetExtension(file.FileName);
@@ -114,15 +124,17 @@ namespace Lumina.Authentification.API.Controllers
             return filePath;
         }
 
-        // Read users from the Excel file
         private List<ExcelUser> ReadUsersFromExcel(string filePath)
         {
             var users = new List<ExcelUser>();
-
             using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
             {
                 var workbook = new XSSFWorkbook(fs);
                 var sheet = workbook.GetSheetAt(0); // Assuming the first sheet contains user data
+                var headerRow = sheet.GetRow(sheet.FirstRowNum);
+
+                // Validate headers
+                ValidateHeaders(headerRow);
 
                 for (int i = (sheet.FirstRowNum + 1); i <= sheet.LastRowNum; i++) // Assuming first row is header
                 {
@@ -142,9 +154,23 @@ namespace Lumina.Authentification.API.Controllers
 
             return users;
         }
+
+        private void ValidateHeaders(IRow headerRow)
+        {
+            var expectedHeaders = new List<string> { "FirstName", "LastName", "Email", "PasswordHash" };
+            for (int i = 0; i < expectedHeaders.Count; i++)
+            {
+                var cell = headerRow.GetCell(i);
+                if (cell == null || cell.ToString() != expectedHeaders[i])
+                {
+                    throw new ValidationException($"En-tête non valide à la position {i}. Attendue '{expectedHeaders[i]}', mais trouvée '{cell?.ToString()}'");
+                }
+            }
+        }
+
         // POST api/<UtilisateurController>
         [HttpPost("register")]
-        public async Task<OperationResult> RegisterUser([FromBody] CreateUtilisateurCommand utilisateur)
+        public async Task<OperationResult> RegisterUser(CreateUtilisateurCommand utilisateur)
         {
             var response = await _mediator.Send(utilisateur);
             return response;

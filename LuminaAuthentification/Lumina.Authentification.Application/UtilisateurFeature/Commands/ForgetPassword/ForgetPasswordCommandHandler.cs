@@ -32,19 +32,19 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.Forget
             if (user == null)
             {
                 // L'utilisateur avec cet email n'existe pas
-                return new OperationResult { Status = false, Message = "No user found with this email" };
+                return new OperationResult { Status = false, Message = "Aucun utilisateur n'a été trouvé avec cet email" };
             }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             // Vous pouvez maintenant envoyer ce jeton par e-mail à l'utilisateur
             // Construct a more expressive email body
             var resetLink = $"http://localhost:4200/changepwd?userId={user.Id}&token={WebUtility.UrlEncode(token)}";
-            var body = $"Hello {user.UserName},\n\nYou have requested to reset your password. Click the link below to reset your password:\n\n{resetLink}\n\nIf you did not request this reset, please ignore this email.";
+            var body = $"Bonjour {user.UserName},\n\nVous avez demandé à réinitialiser votre mot de passe. Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe:\n\n{resetLink}\n\nSi vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet e-mail.";
 
-            var data = new MailData(user.Id, user.Email, "JobyHunter Reset Password", body);
+            var data = new MailData(user.Id, user.Email, "Réinitialisation du mot de passe de Lumina", body);
             _mailService.SendMail(data);
 
-            return new OperationResult { Status = true, Message = "Password reset token generated successfully,le token est  ", Token = token };
+            return new OperationResult { Status = true, Message = "Lien de réinitialisation du mot de passe générée avec succès consultez votre courrier" };
         }
     }
 }

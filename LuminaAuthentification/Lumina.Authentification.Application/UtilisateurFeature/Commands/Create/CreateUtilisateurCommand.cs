@@ -1,13 +1,6 @@
 ﻿using Lumina.Authentification.Application.Commons;
-using Lumina.Authentification.Domain.Enums;
 using MediatR;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.Create
 {
     public record CreateUtilisateurCommand : IRequest<OperationResult>
@@ -23,5 +16,6 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Commands.Create
 
         [Required(ErrorMessage = "Password is required")]
         public string PasswordHash { get; set; }
+        public List<string>? ChildIds { get; set; } 
     }
 }

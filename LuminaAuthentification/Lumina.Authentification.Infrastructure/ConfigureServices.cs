@@ -20,7 +20,6 @@ namespace Lumina.Authentification.Infrastructure
         {
             services.AddSqlServer<LuminaContext>(
                 configuration.GetConnectionString("LuminaContextConnection"), null);
-
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
             services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
             services.AddTransient<IMailService, MailService>();

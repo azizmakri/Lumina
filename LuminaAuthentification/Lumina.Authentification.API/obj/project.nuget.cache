@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sntn3IrPW61Y5FhM2qBX3cL3QLGA8gKG1NO5MgwWg9ulAPD8E4/agQhkjRGg1COX0mPfT4sTi6qrbFyI7vi2VQ==",
+  "dgSpecHash": "C+bvfJW/xyoNq9ZSLCpqyfFzQvmvlY3TBviYwqNQb+HECi/W5C1fzL1SwlwNcDtDcNcGyarIPi+pyFhcNGSP1A==",
   "success": true,
   "projectFilePath": "C:\\PFE\\LuminaApi\\LuminaAuthentification\\Lumina.Authentification.API\\Lumina.Authentification.API.csproj",
   "expectedPackageFiles": [
@@ -170,6 +170,7 @@
     "C:\\Users\\Aziz\\.nuget\\packages\\nuget.protocol\\6.3.1\\nuget.protocol.6.3.1.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\nuget.versioning\\6.3.1\\nuget.versioning.6.3.1.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
+    "C:\\Users\\Aziz\\.nuget\\packages\\rabbitmq.client\\6.8.1\\rabbitmq.client.6.8.1.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\scrutor\\3.3.0\\scrutor.3.3.0.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\sharpziplib\\1.3.3\\sharpziplib.1.3.3.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\sixlabors.fonts\\1.0.0\\sixlabors.fonts.1.0.0.nupkg.sha512",
@@ -198,7 +199,7 @@
     "C:\\Users\\Aziz\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\system.io.filesystem.accesscontrol\\5.0.0\\system.io.filesystem.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512",
-    "C:\\Users\\Aziz\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\Aziz\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\Aziz\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",

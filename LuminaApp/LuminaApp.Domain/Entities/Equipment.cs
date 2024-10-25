@@ -13,7 +13,7 @@ namespace LuminaApp.Domain.Entities
         public int EquipmentId { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        public ClassRoom? classRoom { get; set; }
+        public virtual ClassRoom? classRoom { get; set; }
         public int? classRoomFK { get; set; }
 
     }

@@ -9,8 +9,13 @@ namespace Lumina.Authentification.Application.UtilisateurFeature.Dtos
 {
     public class UserDto
     {
+        public string Id { get; set; }
+        public string role { get; set; }
         public string FirstName { get; set; }
+        public string UserName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string ParentFK { get; set; }
+        public int? GradeFK { get; set; }
     }
 }

@@ -11,8 +11,12 @@ namespace LuminaApp.Domain.Entities
     {
         [Key]
         public int subjectId { get; set; }
+        public int gradeFK { get; set; }
+        public string teacherFK { get; set; }
         public string SubjectName { get; set; }
         public float coefficient { get; set; }
         public virtual ICollection<Session>? sessions { get; set; }
+        public virtual Grade? grade { get; set; }
+        public virtual User? teacher { get; set; }
     }
 }
